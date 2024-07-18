@@ -1,4 +1,5 @@
 import classes from './Modal.module.css';
+import { createPortal } from 'react-dom';
 
 
 
@@ -18,12 +19,16 @@ const ModalOverlays = (props) => {
 }
 
 
+const portalElement = document.getElementById('overlays')
 
-const Modal = () => {
+const Modal = (props) => {
     return ( 
         <>
+        {createPortal(<Backdrop />, portalElement)}
+        {createPortal(<ModalOverlays>{props.children}</ModalOverlays>, portalElement)}
         </>
      );
 }
+
  
 export default Modal;
